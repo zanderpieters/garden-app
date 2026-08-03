@@ -54,10 +54,25 @@ def main():
     Ask the user for their season and plant type, then print
     combined care advice and a plant recommendation.
     """
+    valid_seasons = SEASON_ADVICE.keys()
+    valid_plants = PLANT_ADVICE.keys()
+
     season = input(
         "Enter the current season (summer/winter): ").strip().lower()
+    while season not in valid_seasons:
+        print(
+            f"Invalid season. Please choose from: {', '.join(valid_seasons)}")
+        season = input(
+            "Enter the current season (summer/winter): ").strip().lower()
+
     plant_type = input(
         "Enter the plant type (flower/vegetable): ").strip().lower()
+    while plant_type not in valid_plants:
+        print(
+            f"Invalid plant type. Please choose from: "
+            f"{', '.join(valid_plants)}")
+        plant_type = input(
+            "Enter the plant type (flower/vegetable): ").strip().lower()
 
     advice = get_season_advice(season) + get_plant_advice(plant_type)
     recommendation = get_plant_recommendation(season)
