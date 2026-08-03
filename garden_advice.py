@@ -1,23 +1,70 @@
-# Hardcoded values for the season and plant type
-season = input(
-    "Enter the current season (summer/winter): ").strip().lower()  # TODO: Replace with input() to allow user interaction.
-plant_type = input(
-    "Enter the plant type (flower/vegetable): ").strip().lower()  # TODO: Replace with input() to allow user interaction.
-# Variable to hold gardening advice
-advice = ""
-# Determine advice based on the season
-if season == "summer":
-    advice += "Water your plants regularly and provide some shade.\n"
-elif season == "winter":
-    advice += "Protect your plants from frost with covers.\n"
-else:
-    advice += "No advice for this season.\n"
-# Determine advice based on the plant type
-if plant_type == "flower":
-    advice += "Use fertiliser to encourage blooms."
-elif plant_type == "vegetable":
-    advice += "Keep an eye out for pests!"
-else:
-    advice += "No advice for this type of plant."
-# Print the generated advice
-print(advice)
+"""
+Garden Advice App
+Provides gardening advice based on the season and plant type
+entered by the user.
+"""
+
+# Dictionary storing watering/care advice for each season
+SEASON_ADVICE = {
+    "summer": "Water your plants regularly and provide some shade.\n",
+    "winter": "Protect your plants from frost with covers.\n",
+}
+
+# Dictionary storing care advice for each plant type
+PLANT_ADVICE = {
+    "flower": "Use fertiliser to encourage blooms.",
+    "vegetable": "Keep an eye out for pests!",
+}
+
+# Dictionary recommending plants suited to each season
+SEASON_PLANT_RECOMMENDATIONS = {
+    "summer": "Recommended plants for summer: sunflowers, tomatoes, basil.",
+    "winter": "Recommended plants for winter: kale, pansies, garlic.",
+}
+
+
+def get_season_advice(season):
+    """
+    Return care advice for the given season.
+    If the season is not recognised, return a default message.
+    """
+    return SEASON_ADVICE.get(season, "No advice for this season.\n")
+
+
+def get_plant_advice(plant_type):
+    """
+    Return care advice for the given plant type.
+    If the plant type is not recognised, return a default message.
+    """
+    return PLANT_ADVICE.get(plant_type, "No advice for this type of plant.")
+
+
+def get_plant_recommendation(season):
+    """
+    Return a plant recommendation for the given season.
+    If the season is not recognised, return a default message.
+    """
+    return SEASON_PLANT_RECOMMENDATIONS.get(
+        season, "No plant recommendations available for this season."
+    )
+
+
+def main():
+    """
+    Ask the user for their season and plant type, then print
+    combined care advice and a plant recommendation.
+    """
+    season = input(
+        "Enter the current season (summer/winter): ").strip().lower()
+    plant_type = input(
+        "Enter the plant type (flower/vegetable): ").strip().lower()
+
+    advice = get_season_advice(season) + get_plant_advice(plant_type)
+    recommendation = get_plant_recommendation(season)
+
+    print(advice)
+    print(recommendation)
+
+
+if __name__ == "__main__":
+    main()
