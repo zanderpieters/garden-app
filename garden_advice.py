@@ -1,7 +1,9 @@
 """
 Garden Advice App
-Provides gardening advice based on the season and plant type
-entered by the user.
+
+A simple command-line tool that asks the user for the current season
+and the type of plant they are growing, then prints tailored care
+advice and a plant recommendation based on their answers.
 """
 
 # Dictionary storing watering/care advice for each season
